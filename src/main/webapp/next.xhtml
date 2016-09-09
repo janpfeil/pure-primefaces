@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+	<h2>form submission changes label</h2>
+	<h:form>
+		<h:outputLabel value="#{messageBean.label}">
+			<h:inputText value="#{messageBean.message}" />
+		</h:outputLabel>
+
+		<h:commandButton action="#{messageBean.onSave()}" value="save" />
+	</h:form>
+	<p>
+		<h:outputText id="output" value="#{messageBean.message}" />
+	</p>
+
+	<h:form>
+		<!-- command muss in form tag stehen -->
+		<h:commandLink action="index" value="POST: zurück" />
+	</h:form>
+	<h:outputLink value="index.jsf">GET: zurück</h:outputLink>
+
+	<p>Man beachte die Url in der Adresszeile des Browsers. Sie zeigt
+		immer die Location an, die zuletzt per GET angefordert wurde.</p>
+	<p>Der Link wird als POST request ausgeführt.</p>
+	<h3>Lösung</h3>
+	<p>PRG: Post-Redirect-Get</p>
+	<p>
+		<h:outputLink value="table.jsf">task list</h:outputLink>
+	</p>
+</body>
+</html>
