@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<f:metadata>
+</f:metadata>
+<h:head></h:head>
+<body>
+	<h2>Item</h2>
+	<h:form>
+		<h:inputText value="#{editTaskBean.task.subject}" />
+		<h:inputText value="#{editTaskBean.task.description}" />
+
+		<h:commandButton action="#{editTaskBean.onSave()}" value="Save" />
+	</h:form>
+	<h:link value="Cancel" outcome="table" />
+</body>
+</html>
