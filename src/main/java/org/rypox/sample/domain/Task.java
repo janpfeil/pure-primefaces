@@ -1,6 +1,9 @@
 package org.rypox.sample.domain;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
+  private static final long serialVersionUID = -312640192678994739L;
   private Long id;
   private String subject;
   private String description;
