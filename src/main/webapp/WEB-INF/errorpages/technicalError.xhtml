@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Technical Error</title>
+</head>
+<body>
+	<h1>Technical Error</h1>
+	<h3>Cause</h3>
+	<p>
+		<h:outputText value="Error Code: #{errorHandler.statusCode}"></h:outputText>
+		<br />
+		<h:outputText value="Error Desscription: #{errorHandler.message}"></h:outputText>
+		<br />
+		<h:outputText value="Exception Type: #{errorHandler.exceptionType}"></h:outputText>
+		<br />
+		<h:outputText value="Exception Calss: #{errorHandler.exception}"></h:outputText>
+		<br />
+		<h:outputText value="Request URI : #{errorHandler.requestURI}"></h:outputText>
+	</p>
+	<p>
+		<a href="#{request.contextPath}/index.xhtml">Click here if
+			redirect didn't work or when you're impatient</a>.
+	</p>
+</body>
+</html>

@@ -43,4 +43,9 @@ public class MessageBean {
   public void end() {
     System.out.println("MessageBean.end()");
   }
+
+  public void onNpe() {
+    Object n = null;
+    n.getClass();
+  }
 }

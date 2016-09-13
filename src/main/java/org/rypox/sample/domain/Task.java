@@ -4,6 +4,7 @@ public class Task {
   private Long id;
   private String subject;
   private String description;
+  private String opsys;
 
   public Task() {
     super();
@@ -13,6 +14,7 @@ public class Task {
     this();
     this.subject = subject;
     this.description = description;
+    this.opsys = "fedora";
   }
 
   public Long getId() {
@@ -37,5 +39,13 @@ public class Task {
 
   public void setSubject(String subject) {
     this.subject = subject;
+  }
+
+  public String getOpsys() {
+    return opsys;
+  }
+
+  public void setOpsys(String opsys) {
+    this.opsys = opsys;
   }
 }

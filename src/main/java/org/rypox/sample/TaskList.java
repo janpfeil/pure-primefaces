@@ -20,18 +20,33 @@ import org.rypox.sample.domain.Task;
 @SessionScoped
 public class TaskList implements Serializable {
   private static final long serialVersionUID = 3872411784218998192L;
-  private Map<Long, Task> tasks;
+  private Map<Long, Task> persistedTasks;
+  private List<Task> tasks;
   private Long lastId;
+  private List<ColumnModel> columns;
 
   @PostConstruct
   public void init() {
-    this.tasks = new HashMap<>();
+    this.tasks = new ArrayList<>();
+    this.persistedTasks = new HashMap<>();
     this.lastId = 0L;
-    this.addTask(new Task("sample todo", "mach ich morgen"));
+    this.addTask(new Task("todo gestern", "machte ich gestern"));
+    this.addTask(new Task("todo heute", "mach ich morgen"));
+    this.addTask(new Task("todo morgen", "mach ich übermorgen"));
+    this.columns = new ArrayList<>();
+    this.columns.add(new ColumnModel("ID", "id"));
+    this.columns.add(new ColumnModel("Subject", "subject"));
+    this.columns.add(new ColumnModel("Description", "description"));
+    // key/value select options
+    HashMap<String, String> options = new HashMap<>();
+    options.put("centos", "CentOS");
+    options.put("fedora", "Fedora");
+    options.put("debian", "Debian");
+    this.columns.add(new DropDownColumn("OS", "opsys", options));
   }
 
-  public Collection<Task> getTasks() {
-    return tasks.values();
+  public List<Task> getTasks() {
+    return this.tasks;
   }
 
   public String onAdd() {
@@ -43,18 +58,19 @@ public class TaskList implements Serializable {
   }
 
   public String onDelete(Task task) {
-    this.tasks.remove(task);
+    this.persistedTasks.remove(task);
     return null;
   }
 
   public Task getTask(Long id) {
-    return this.tasks.get(id);
+    return this.persistedTasks.get(id);
   }
 
   public void addTask(Task task) {
     Long key = generate();
     task.setId(key);
-    this.tasks.put(key, task);
+    this.persistedTasks.put(key, task);
+    this.tasks.add(task);
   }
 
   private Long generate() {
@@ -62,7 +78,12 @@ public class TaskList implements Serializable {
   }
 
   public void update(Task task) {
-    this.tasks.put(task.getId(), task);
+    this.persistedTasks.put(task.getId(), task);
+    // TODO update task in tasks
+  }
+
+  public List<ColumnModel> getColumns() {
+    return columns;
   }
 
 }

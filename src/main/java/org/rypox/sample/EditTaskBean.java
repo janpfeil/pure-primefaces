@@ -13,6 +13,8 @@ import org.rypox.sample.domain.Task;
 @ManagedBean
 @RequestScoped
 public class EditTaskBean implements Serializable {
+  private static final long serialVersionUID = -6388076025560020146L;
+
   @ManagedProperty(value = "#{taskList}")
   private TaskList taskList;
 
@@ -29,7 +31,8 @@ public class EditTaskBean implements Serializable {
     } else {
       this.taskList.update(this.task);
     }
-    return "table.jsf?faces-redirect=true";
+    //TODO navigate back to caller page
+    return "table_dyncolumn.jsf?faces-redirect=true";
   }
 
   public Task getTask() {
