@@ -1,8 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
 <f:metadata>
 	<f:viewParam name="id" value="#{editTaskBean.task}"
 		converter="#{itemConverter}"
@@ -10,17 +13,35 @@
 		required="false"
 		requiredMessage="Bad request, please use a link from within the system." />
 </f:metadata>
-<h:head></h:head>
+<h:head>
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/4.6.3/css/font-awesome-jsf.css" />
+</h:head>
 <body>
 	<h2>Item</h2>
-	<h:form>
-		<h:inputText value="#{editTaskBean.task.subject}" />
-		<h:inputText value="#{editTaskBean.task.description}" />
+	<h:form id="editForm">
+		<p:messages />
+		<p:panelGrid columns="3">
+			<p:outputLabel value="Subject" for="subjectId" />
+			<p:inputText id="subjectId" value="#{editTaskBean.task.subject}"
+				required="true" requiredMessage="provide subject for task" />
+			<p:message for="subjectId" />
+			<p:outputLabel value="Description" for="descriptionId" />
+			<p:inputText id="descriptionId"
+				value="#{editTaskBean.task.description}" />
+			<p:message for="descriptionId" />
+			<p:outputLabel value="Operating System" for="ops" />
+			<p:selectOneMenu id="ops" value="#{editTaskBean.task.opsys}">
+				<f:selectItems value="#{taskList.options}" />
+			</p:selectOneMenu>
+		</p:panelGrid>
 
-		<h:commandButton action="#{editTaskBean.onSave()}" value="Save" />
+		<p:commandButton action="#{editTaskBean.onSave()}" value="Save"
+			icon="fa fa-save" />
 	</h:form>
-	
-	<h:link value="Cancel" outcome="table"/>
+
+	<h:link value="Cancel" outcome="table" />
+	<h:button value="Cancel" outcome="table_dyncolumn"></h:button>
 
 </body>
 </html>
