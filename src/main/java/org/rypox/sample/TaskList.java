@@ -37,12 +37,21 @@ public class TaskList implements Serializable {
     this.columns.add(new ColumnModel("ID", "id"));
     this.columns.add(new ColumnModel("Subject", "subject"));
     this.columns.add(new ColumnModel("Description", "description"));
-    // key/value select options
+    this.columns.add(new DropDownColumn("OS", "opsys", this.getOptions()));
+  }
+
+  /**
+   * key/value select options
+   * 
+   * @return
+   */
+  public HashMap<String, String> getOptions() {
     HashMap<String, String> options = new HashMap<>();
     options.put("centos", "CentOS");
     options.put("fedora", "Fedora");
     options.put("debian", "Debian");
-    this.columns.add(new DropDownColumn("OS", "opsys", options));
+    options.put("suse", "OpenSuse");
+    return options;
   }
 
   public List<Task> getTasks() {
@@ -59,6 +68,7 @@ public class TaskList implements Serializable {
 
   public String onDelete(Task task) {
     this.persistedTasks.remove(task);
+    this.tasks.remove(task);
     return null;
   }
 
