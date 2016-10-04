@@ -16,8 +16,7 @@
 	</root>
 
 	<logger name="org.springframework" level="debug" />
-	<logger name="org.springframework.web.servlet" level="trace" />
+	<logger name="javax.faces" level="debug" />
 	<logger name="org.rypox" level="trace" />
-	<logger name="com.sun.faces" level="trace" />
 
 </configuration>
