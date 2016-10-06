@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h2>Auto Market</h2>
+	<h:form>
+
+		<h4>no converter</h4>
+		<p>The f:selectItems value display the raw objects, without
+			convertsion.</p>
+		<p:selectOneMenu value="#{autoMarket.selectedBrand}">
+			<f:selectItem itemValue="#{null}" itemLabel="Please select ..." />
+			<f:selectItems value="#{autoMarket.brandsList}"
+				itemLabel="#{brand.name}" itemValue="#{brand}" />
+			<h:column>
+				<h:outputText value="#{bramd.name}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{brand.country}" />
+			</h:column>
+		</p:selectOneMenu>
+
+		<h4>with converter</h4>
+		<p:selectOneMenu id="brands" value="#{autoMarket.selectedBrand}"
+			converter="pojoConverter" var="item">
+			<f:selectItem itemValue="#{null}" itemLabel="Please select ..." />
+			<f:selectItems value="#{autoMarket.brandsList}" var="brand"
+				itemValue="#{brand}" itemLabel="#{brand.id}" />
+			<p:column>
+				<h:outputText value="#{item.name}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{item.country}" />
+			</p:column>
+		</p:selectOneMenu>
+		<h4>with converter</h4>
+		<p:autoComplete cache="true" converter="pojoConverter" dropdown="true"
+			completeMethod="#{autoMarket.completeBrand}" var="brand"
+			itemValue="#{brand}" itemLabel="#{brand.id}"
+			value="#{autoMarket.selectedBrand}">
+			<p:column>
+				<h:outputText value="#{brand.id}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{brand.name}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{brand.country}" />
+			</p:column>
+		</p:autoComplete>
+	</h:form>
+
+
+	<h:outputLink value="index.jsf">GET: zurück</h:outputLink>
+
+</body>
+</html>
