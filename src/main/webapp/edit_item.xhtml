@@ -20,7 +20,7 @@
 <body>
 	<h2>Item</h2>
 	<h:form id="editForm">
-		<p:messages />
+		<p:messages id="msg"/>
 		<p:panelGrid columns="3">
 			<p:outputLabel value="Subject" for="subjectId" />
 			<p:inputText id="subjectId" value="#{editTaskBean.task.subject}"
@@ -36,8 +36,8 @@
 			</p:selectOneMenu>
 		</p:panelGrid>
 
-		<p:commandButton action="#{editTaskBean.onSave()}" value="Save"
-			icon="fa fa-save" />
+		<p:commandButton action="#{editTaskBean.onSave()}" value="Save" update="msg"
+			icon="fa fa-fw fa-save" />
 	</h:form>
 
 	<h:link value="Cancel" outcome="table" />
