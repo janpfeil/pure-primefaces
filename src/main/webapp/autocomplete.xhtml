@@ -39,10 +39,10 @@
 				<h:outputText value="#{item.country}" />
 			</p:column>
 		</p:selectOneMenu>
-		<h4>with converter</h4>
+		<h4>org.rypox.sample.automobile.Brand als Pojo von autoMarket.completeBrand(), mit Konverter</h4>
 		<p:autoComplete cache="true" converter="pojoConverter" dropdown="true"
 			completeMethod="#{autoMarket.completeBrand}" var="brand"
-			itemValue="#{brand}" itemLabel="#{brand.id}"
+			itemValue="#{brand}" itemLabel="#{brand.name} - #{brand.country}"
 			value="#{autoMarket.selectedBrand}">
 			<p:column>
 				<h:outputText value="#{brand.id}" />
@@ -52,6 +52,22 @@
 			</p:column>
 			<p:column>
 				<h:outputText value="#{brand.country}" />
+			</p:column>
+		</p:autoComplete>
+		
+		<h4>String[] als Pojo von autoMarket.completeBrand2(), ohne Konverter</h4>
+		<p:autoComplete cache="true" dropdown="true"
+			completeMethod="#{autoMarket.completeBrand2}" var="brand"
+			itemValue="#{brand[0]}" itemLabel="#{brand[1]}"
+			value="#{autoMarket.selectedBrandId}">
+			<p:column>
+				<h:outputText value="#{brand[0]}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{brand[1]}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{brand[2]}" />
 			</p:column>
 		</p:autoComplete>
 	</h:form>

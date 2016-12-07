@@ -21,8 +21,11 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class AutoMarket implements Serializable {
+  private static final long serialVersionUID = -1129678836958520677L;
   private Map<Integer, Brand> brands;
   private Brand selectedBrand;
+  private String selectedBrandId;
+  private Object selectedObject;
 
   public AutoMarket() {
     super();
@@ -62,15 +65,32 @@ public class AutoMarket implements Serializable {
     this.selectedBrand = selectedBrand;
   }
 
-  public Collection<Brand> completeBrand(String search) {
+
+  public String getSelectedBrandId() {
+    return selectedBrandId;
+  }
+
+  public void setSelectedBrandId(String selectedBrandId) {
+    this.selectedBrandId = selectedBrandId;
+  }
+
+  public Object getSelectedObject() {
+    return selectedObject;
+  }
+
+  public void setSelectedObject(Object selectedObject) {
+    this.selectedObject = selectedObject;
+  }
+
+  public Collection<Brand> completeBrand(String query) {
     Collection<Brand> brands = new ArrayList<>();
-    if (!search.isEmpty()) {
+    if (!query.isEmpty()) {
       for (Brand brand : this.brands.values()) {
-        boolean success = brand.getName().toLowerCase().contains(search.toLowerCase());
+        boolean success = brand.getName().toLowerCase().contains(query.toLowerCase());
         if (success) {
           brands.add(brand);
         } else {
-          success = brand.getCountry().toLowerCase().contains(search.toLowerCase());
+          success = brand.getCountry().toLowerCase().contains(query.toLowerCase());
           if (success) {
             brands.add(brand);
           }
@@ -78,6 +98,26 @@ public class AutoMarket implements Serializable {
       }
     } else {
       brands.addAll(this.getBrandsList());
+    }
+    return brands;
+  }
+  
+  public Collection<String[]> completeBrand2(String query) {
+    ArrayList<String[]> brands = new ArrayList<>();
+    if (!query.isEmpty()) {
+      for (Brand brand : this.brands.values()) {
+        boolean success = brand.getName().toLowerCase().contains(query.toLowerCase());
+        if (success) {
+          brands.add(new String[] {""+brand.getId(),brand.getName(),brand.getCountry()});
+        } else {
+          success = brand.getCountry().toLowerCase().contains(query.toLowerCase());
+          if (success) {
+            brands.add(new String[] {""+brand.getId(),brand.getName(),brand.getCountry()});
+          }
+        }
+      }
+    } else {
+      //brands.addAll(this.getBrandsList());
     }
     return brands;
   }
