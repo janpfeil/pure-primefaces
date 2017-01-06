@@ -1,37 +1,39 @@
 package org.rypox.sample;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-@RequestScoped
-public class MessageBean {
+@SessionScoped
+public class MessageBean implements Serializable {
 
   private String label;
   private String message;
 
   public String getMessage() {
-    return message;
+    return this.message;
   }
 
-  public void setMessage(String message) {
+  public void setMessage(final String message) {
     this.message = message;
   }
 
   public String getLabel() {
-    return label;
+    return this.label;
   }
 
-  public void setLabel(String label) {
+  public void setLabel(final String label) {
     this.label = label;
   }
 
   public void onSave() {
     System.out.println("onSave:" + this.message);
-    this.label = message;
-    this.message = message + " changed";
+    this.label = this.message;
+    this.message = this.message + " changed";
   }
 
   @PostConstruct
@@ -45,7 +47,7 @@ public class MessageBean {
   }
 
   public void onNpe() {
-    Object n = null;
+    final Object n = null;
     n.getClass();
   }
 }

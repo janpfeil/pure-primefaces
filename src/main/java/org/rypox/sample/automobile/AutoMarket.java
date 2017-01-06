@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.rypox.sample.automobile;
 
@@ -46,46 +46,45 @@ public class AutoMarket implements Serializable {
   }
 
   public List<Brand> getBrandsList() {
-    return new ArrayList<>(brands.values());
+    return new ArrayList<>(this.brands.values());
   }
 
   public Map<Integer, Brand> getBrands() {
-    return brands;
+    return this.brands;
   }
 
-  public void setBrands(Map<Integer, Brand> brands) {
+  public void setBrands(final Map<Integer, Brand> brands) {
     this.brands = brands;
   }
 
   public Brand getSelectedBrand() {
-    return selectedBrand;
+    return this.selectedBrand;
   }
 
-  public void setSelectedBrand(Brand selectedBrand) {
+  public void setSelectedBrand(final Brand selectedBrand) {
     this.selectedBrand = selectedBrand;
   }
 
-
   public String getSelectedBrandId() {
-    return selectedBrandId;
+    return this.selectedBrandId;
   }
 
-  public void setSelectedBrandId(String selectedBrandId) {
+  public void setSelectedBrandId(final String selectedBrandId) {
     this.selectedBrandId = selectedBrandId;
   }
 
   public Object getSelectedObject() {
-    return selectedObject;
+    return this.selectedObject;
   }
 
-  public void setSelectedObject(Object selectedObject) {
+  public void setSelectedObject(final Object selectedObject) {
     this.selectedObject = selectedObject;
   }
 
-  public Collection<Brand> completeBrand(String query) {
-    Collection<Brand> brands = new ArrayList<>();
+  public Collection<Brand> completeBrand(final String query) {
+    final Collection<Brand> brands = new ArrayList<>();
     if (!query.isEmpty()) {
-      for (Brand brand : this.brands.values()) {
+      for (final Brand brand : this.brands.values()) {
         boolean success = brand.getName().toLowerCase().contains(query.toLowerCase());
         if (success) {
           brands.add(brand);
@@ -97,27 +96,27 @@ public class AutoMarket implements Serializable {
         }
       }
     } else {
-      brands.addAll(this.getBrandsList());
+      brands.addAll(getBrandsList());
     }
     return brands;
   }
-  
-  public Collection<String[]> completeBrand2(String query) {
-    ArrayList<String[]> brands = new ArrayList<>();
+
+  public Collection<String[]> completeBrand2(final String query) {
+    final ArrayList<String[]> brands = new ArrayList<>();
     if (!query.isEmpty()) {
-      for (Brand brand : this.brands.values()) {
+      for (final Brand brand : this.brands.values()) {
         boolean success = brand.getName().toLowerCase().contains(query.toLowerCase());
         if (success) {
-          brands.add(new String[] {""+brand.getId(),brand.getName(),brand.getCountry()});
+          brands.add(new String[] { "" + brand.getId(), brand.getName(), brand.getCountry() });
         } else {
           success = brand.getCountry().toLowerCase().contains(query.toLowerCase());
           if (success) {
-            brands.add(new String[] {""+brand.getId(),brand.getName(),brand.getCountry()});
+            brands.add(new String[] { "" + brand.getId(), brand.getName(), brand.getCountry() });
           }
         }
       }
     } else {
-      //brands.addAll(this.getBrandsList());
+      // brands.addAll(this.getBrandsList());
     }
     return brands;
   }

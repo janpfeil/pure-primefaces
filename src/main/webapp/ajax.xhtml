@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputScript library="javax.faces" name="jsf.js" target="body" />
+</h:head>
+<h:body>
+
+	<h2>Primefaces ajax example</h2>
+
+	<h:form>
+		<p:outputLabel value="Show a message using ajax: ">
+			<p:inputText id="message" value="#{messageBean.message}" />
+		</p:outputLabel>
+
+		<p:commandButton value="Show Message">
+			<p:ajax  update="output" />
+		</p:commandButton>
+	</h:form>
+
+	<p>
+		<p:outputLabel value="Label:#{messageBean.label}"/>
+	</p>
+	<p>
+		<p:outputLabel id="output" value="#{messageBean.message}" />
+	</p>
+	<h:form>
+		<p>
+			<h:commandLink action="next" value="Next" />
+		</p>
+	</h:form>
+	<ul>
+		<li><h:link value="AutoComplete with POJO" outcome="autocomplete"/>
+		</li>
+	</ul>
+</h:body>
+</html>
