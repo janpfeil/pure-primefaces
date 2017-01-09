@@ -5,8 +5,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head>
-<body>
+<h:head>
+	<h:outputStylesheet name="css/style.css" />
+</h:head>
+<h:body>
 	<h2>form submission changes label</h2>
 	<h:form>
 		<h:outputLabel value="#{messageBean.label}">
@@ -33,5 +35,5 @@
 	<p>
 		<h:outputLink value="table.jsf">task list</h:outputLink>
 	</p>
-</body>
+</h:body>
 </html>
