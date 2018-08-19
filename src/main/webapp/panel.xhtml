@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputScript library="javax.faces" name="jsf.js" target="body" />
+</h:head>
+<h:body>
+
+	<h2>Primefaces panel with session state example</h2>
+
+	<h:form>
+		<p:panel collapsed="#{panelForm.panelCollapsed}" closable="true"
+			toggleable="true" header="panel">
+			<p:outputLabel value="Show a message using ajax: ">
+				<p:inputText id="message" value="#{messageBean.message}" />
+			</p:outputLabel>
+
+		</p:panel>
+
+		<p:commandButton value="Show Message"
+			title="Notice, how update is deferred to next request cycle.">
+			<p:ajax update="output" />
+		</p:commandButton>
+
+		<p:commandButton value="Ajax Submit" id="ajax"
+			actionListener="#{panelForm.submit}" ajax="true"
+			update="output,message"
+			title="Notice, how update is processed without visible page reload." />
+
+		<p:commandButton value="Non-Ajax Submit" id="nonAjax"
+			actionListener="#{panelForm.submit}" ajax="false"
+			title="Notice, how update is done as full page reload." />
+
+		<p>
+			<p:outputLabel value="Label:#{messageBean.label}" />
+		</p>
+		<p>
+			<p:outputLabel id="output" value="#{messageBean.message}" />
+		</p>
+	</h:form>
+
+	<h:form>
+		<p>
+			<h:commandLink action="next" value="Next" />
+		</p>
+	</h:form>
+	<ul>
+		<li><h:link value="AutoComplete with POJO" outcome="autocomplete" />
+		</li>
+	</ul>
+</h:body>
+</html>

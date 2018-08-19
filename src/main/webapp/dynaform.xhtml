@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head></h:head>
+<body>
+	<h:panelGroup id="dynaFormGroup">
+		<p:messages id="messages" showSummary="true" showDetail="true"/>
+		<h:form>
+			<pe:dynaForm id="dynaForm" value="#{dynaFormAction.model}" var="data">
+
+				<pe:dynaFormControl type="autoComplete" for="marke">
+					<p:autoComplete id="marke" cache="true" dropdown="true"
+						converter="pojoConverter"
+						completeMethod="#{autoMarket.completeBrand}" var="brand"
+						itemValue="#{brand}" itemLabel="#{brand.name}"
+						value="#{data.value}">
+						<p:ajax event="itemSelect" update="autoCompleteLabel,autoCompleteLabel2" />
+						<p:column>
+							<h:outputText value="#{brand.id}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{brand.name}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{brand.country}" />
+						</p:column>
+					</p:autoComplete>
+					<p:outputLabel id="autoCompleteLabel" value="#{data.value}"/>
+					<p:outputLabel id="autoCompleteLabel2" value="#{data.value.id}"/>
+					<p:message for="marke"></p:message>
+				</pe:dynaFormControl>
+				
+				<!-- value as OptionDsp type -->
+				<pe:dynaFormControl type="autoCompleteCountry" for="country">
+					<p:autoComplete id="country" cache="true" dropdown="true"
+						converter="optionsConverter"
+						completeMethod="#{dynaFormAction.completeCountry}" var="option"
+						itemValue="#{option}" itemLabel="#{option.label}"
+						value="#{data.value}">
+						<p:column>
+							<h:outputText value="#{option.id}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{option.label}" />
+						</p:column>
+					</p:autoComplete>
+					<p:message for="country"></p:message>
+				</pe:dynaFormControl>
+				<!-- value as String[] type -->
+				<pe:dynaFormControl type="autoCompleteCountry2" for="country2">
+					<p:autoComplete id="country2" cache="true" dropdown="true"
+						completeMethod="#{dynaFormAction.completeCountry2}" var="option"
+						itemValue="#{option[0]}" itemLabel="#{option[1]}"
+						value="#{data.value}">
+						<p:column>
+							<h:outputText value="#{option[0]}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{option[1]}" />
+						</p:column>
+					</p:autoComplete>
+					<p:message for="country2"></p:message>
+				</pe:dynaFormControl>
+				<!-- value as String type -->
+				<pe:dynaFormControl type="autoCompleteCountry3" for="country3">
+					<p:autoComplete id="country3" cache="true" dropdown="true" converter="stringArrayConverter"
+						completeMethod="#{dynaFormAction.completeCountry2}" var="option"
+						itemValue="#{option}" itemLabel="#{option[1]}"
+						value="#{data.value}">
+						<p:column>
+							<h:outputText value="#{option[0]}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{option[1]}" />
+						</p:column>
+					</p:autoComplete>
+					<p:message for="country3"></p:message>
+				</pe:dynaFormControl>
+
+			</pe:dynaForm>
+			
+			<p:commandButton value="Submit" update="messages"
+				actionListener="#{dropdownView.displayLocation}"
+				icon="ui-icon-check" />
+		</h:form>
+	</h:panelGroup>
+
+</body>
+</html>

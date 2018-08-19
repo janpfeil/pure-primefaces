@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 /**
  * @author jan.pfeil
  *
  */
-@ManagedBean
+@Named
 @SessionScoped
 public class AutoMarket implements Serializable {
   private static final long serialVersionUID = -1129678836958520677L;

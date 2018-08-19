@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<!-- 
+Test fixture for modal dialog 
+ -->
+<h:head>
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/4.6.3/css/font-awesome-jsf.css" />
+</h:head>
+<body>
+	<h2>Item</h2>
+
+	<h:form id="commandForm">
+		<h:panelGrid columns="1" cellpadding="5">
+			<p:commandButton value="Basic" type="button"
+				onclick="PF('dlg1').show();" />
+
+			<p:commandButton value="Modal" type="button"
+				onclick="PF('dlg2').show();" />
+
+			<p:commandButton value="Effects" type="button"
+				onclick="PF('dlg3').show();" />
+		</h:panelGrid>
+
+		<p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
+			<h:outputText value="Resistance to PrimeFaces is futile!" />
+		</p:dialog>
+
+		<p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true"
+			height="100">
+			<h:outputText value="This is a Modal Dialog." />
+		</p:dialog>
+
+		<p:dialog header="Effects" widgetVar="dlg3" showEffect="explode"
+			hideEffect="bounce" height="100">
+			<h:outputText value="This dialog has nice effects." />
+		</p:dialog>
+
+		<p:commandButton value="Messages" type="button"
+			onclick="PF('varD').show();" />
+		<p:commandButton value="Info Message" type="button"
+			action="#{messageDialogBean.showInfo('test','sdfharh','asd')}" />
+	</h:form>
+
+	<p:outputPanel id="modalMessage">
+
+		<p:dialog id="id1" widgetVar="varD" header="Hello" dynamic="true"
+			style="z-index: 100" modal="true">
+			<h:outputText value="basic dialog" />
+		</p:dialog>
+		<p:dialog id="messageDialogId2" dynamic="true" style="z-index: 100"
+			closable="false" widgetVar="varDialog" modal="true"
+			appendTo="@(body)">
+
+			<f:facet name="header">
+				<h:outputText id="messageDialogHeader"
+					value="#{messageDialogBean.header}" />
+			</f:facet>
+
+			<p:outputPanel id="modalMessagePanel">
+				<h:form id="messageForm">
+
+					<p:messages id="messages" escape="false" closable="false"
+						showDetail="true" autoUpdate="true"
+						for="#{messageDialogBean.messageDialogId}"></p:messages>
+
+					<p:spacer height="20px"></p:spacer>
+
+					<p:commandButton value="#{msg.btnOk}"
+						oncomplete="PF('varDialog').hide()" />
+				</h:form>
+			</p:outputPanel>
+		</p:dialog>
+	</p:outputPanel>
+
+</body>
+</html>

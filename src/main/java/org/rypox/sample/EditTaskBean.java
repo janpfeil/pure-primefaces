@@ -3,19 +3,18 @@ package org.rypox.sample;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.rypox.sample.domain.Task;
 
-@ManagedBean
+@Named
 @RequestScoped
 public class EditTaskBean implements Serializable {
   private static final long serialVersionUID = -6388076025560020146L;
 
-  @ManagedProperty(value = "#{taskList}")
+  @Inject
   private TaskList taskList;
 
   private Task task;
@@ -31,23 +30,23 @@ public class EditTaskBean implements Serializable {
     } else {
       this.taskList.update(this.task);
     }
-    //TODO navigate back to caller page
+    // TODO navigate back to caller page
     return "table_dyncolumn.jsf?faces-redirect=true";
   }
 
   public Task getTask() {
-    return task;
+    return this.task;
   }
 
-  public void setTask(Task task) {
+  public void setTask(final Task task) {
     this.task = task;
   }
 
   public TaskList getTaskList() {
-    return taskList;
+    return this.taskList;
   }
 
-  public void setTaskList(TaskList taskList) {
+  public void setTaskList(final TaskList taskList) {
     this.taskList = taskList;
   }
 }

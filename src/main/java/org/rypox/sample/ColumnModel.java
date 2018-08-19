@@ -10,7 +10,7 @@ public class ColumnModel implements Serializable {
 
   public final static String[] COLUMN_TYPES = { "TX", "CB", "DD" };
 
-  public ColumnModel(String header, String propertyName) {
+  public ColumnModel(final String header, final String propertyName) {
     super();
     this.header = header;
     this.propertyName = propertyName;
@@ -18,26 +18,26 @@ public class ColumnModel implements Serializable {
   }
 
   public String getHeader() {
-    return header;
+    return this.header;
   }
 
-  public void setHeader(String header) {
+  public void setHeader(final String header) {
     this.header = header;
   }
 
   public String getPropertyName() {
-    return propertyName;
+    return this.propertyName;
   }
 
-  public void setPropertyName(String propertyName) {
+  public void setPropertyName(final String propertyName) {
     this.propertyName = propertyName;
   }
 
   public String getType() {
-    return type;
+    return this.type;
   }
 
-  public void setType(String type) {
+  public void setType(final String type) {
     this.type = type;
   }
 

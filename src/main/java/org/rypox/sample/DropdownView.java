@@ -1,27 +1,28 @@
 /**
- * 
+ *
  */
 package org.rypox.sample;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
 /**
  * @author jan.pfeil
  *
  */
 
-@ManagedBean
-@ViewScoped
+@Named
+@RequestScoped
 public class DropdownView implements Serializable {
 
-  private Map<String, Map<String, String>> data = new HashMap<String, Map<String, String>>();
+  private final Map<String, Map<String, String>> data = new HashMap<>();
   private String country;
   private String city;
   private Map<String, String> countries;
@@ -29,71 +30,73 @@ public class DropdownView implements Serializable {
 
   @PostConstruct
   public void init() {
-    countries = new HashMap<String, String>();
-    countries.put("USA", "USA");
-    countries.put("Germany", "Germany");
-    countries.put("Brazil", "Brazil");
+    this.countries = new HashMap<>();
+    this.countries.put("USA", "USA");
+    this.countries.put("Germany", "Germany");
+    this.countries.put("Brazil", "Brazil");
 
-    Map<String, String> map = new HashMap<String, String>();
+    Map<String, String> map = new HashMap<>();
     map.put("New York", "New York");
     map.put("San Francisco", "San Francisco");
     map.put("Denver", "Denver");
-    data.put("USA", map);
+    this.data.put("USA", map);
 
-    map = new HashMap<String, String>();
+    map = new HashMap<>();
     map.put("Berlin", "Berlin");
     map.put("Munich", "Munich");
     map.put("Frankfurt", "Frankfurt");
-    data.put("Germany", map);
+    this.data.put("Germany", map);
 
-    map = new HashMap<String, String>();
+    map = new HashMap<>();
     map.put("Sao Paolo", "Sao Paolo");
     map.put("Rio de Janerio", "Rio de Janerio");
     map.put("Salvador", "Salvador");
-    data.put("Brazil", map);
+    this.data.put("Brazil", map);
   }
 
   public Map<String, Map<String, String>> getData() {
-    return data;
+    return this.data;
   }
 
   public String getCountry() {
-    return country;
+    return this.country;
   }
 
-  public void setCountry(String country) {
+  public void setCountry(final String country) {
     this.country = country;
   }
 
   public String getCity() {
-    return city;
+    return this.city;
   }
 
-  public void setCity(String city) {
+  public void setCity(final String city) {
     this.city = city;
   }
 
   public Map<String, String> getCountries() {
-    return countries;
+    return this.countries;
   }
 
   public Map<String, String> getCities() {
-    return cities;
+    return this.cities;
   }
 
   public void onCountryChange() {
-    if (country != null && !country.equals(""))
-      cities = data.get(country);
-    else
-      cities = new HashMap<String, String>();
+    if ((this.country != null) && !this.country.equals("")) {
+      this.cities = this.data.get(this.country);
+    } else {
+      this.cities = new HashMap<>();
+    }
   }
 
   public void displayLocation() {
     FacesMessage msg;
-    if (city != null && country != null)
-      msg = new FacesMessage("Selected", city + " of " + country);
-    else
+    if ((this.city != null) && (this.country != null)) {
+      msg = new FacesMessage("Selected", this.city + " of " + this.country);
+    } else {
       msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid", "City is not selected.");
+    }
 
     FacesContext.getCurrentInstance().addMessage(null, msg);
   }

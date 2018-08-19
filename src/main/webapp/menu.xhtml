@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+  <h:outputScript library="javax.faces" name="jsf.js" target="body" />
+</h:head>
+<h:body>
+  <ui:composition template="WEB-INF/layout/main.xhtml">
+
+    <ui:define name="heading">
+      <span class="uitype heading">ui element name:heading </span>
+      <h3>page with template</h3> from WEB-INF/layout/main.xhtml
+			<p>
+        inside <b>ui:define</b> for heading
+      </p>
+      <h:form>
+        <p:menubar>
+          <p:submenu label="Autocomplete">
+            <p:menuitem value="Version 1" action="autocomplete" />
+            <p:menuitem value="Version 2" action="autocomplete2" />
+          </p:submenu>
+        </p:menubar>
+      </h:form>
+    </ui:define>
+
+    <ui:define name="content">
+      <span class="uitype content">ui element name:content </span>
+      <h:form>
+        <h:outputLabel value="Show a message using ajax: ">
+          <h:inputText id="message" value="#{messageBean.message}" />
+        </h:outputLabel>
+
+        <h:commandButton value="Show Message">
+          <f:ajax execute="message" render="output" />
+        </h:commandButton>
+      </h:form>
+
+      <p>
+        <h:outputText id="output" value="#{messageBean.message}" />
+      </p>
+      <h:link outcome="index2" value="Next (h:link)" />
+    </ui:define>
+  </ui:composition>
+
+</h:body>
+</html>

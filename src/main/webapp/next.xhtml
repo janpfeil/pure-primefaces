@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <h:head>
 	<h:outputStylesheet name="css/style.css" />
@@ -25,15 +25,12 @@
 		<!-- command muss in form tag stehen -->
 		<h:commandLink action="index" value="POST: zurück" />
 	</h:form>
-	<h:outputLink value="index.jsf">GET: zurück</h:outputLink>
+	<h:outputLink value="index.xhtml">GET: zurück</h:outputLink>
 
 	<p>Man beachte die Url in der Adresszeile des Browsers. Sie zeigt
 		immer die Location an, die zuletzt per GET angefordert wurde.</p>
 	<p>Der Link wird als POST request ausgeführt.</p>
 	<h3>Lösung</h3>
 	<p>PRG: Post-Redirect-Get</p>
-	<p>
-		<h:outputLink value="table.jsf">task list</h:outputLink>
-	</p>
 </h:body>
 </html>

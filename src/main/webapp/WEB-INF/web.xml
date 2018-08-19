@@ -29,19 +29,19 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.jsf</url-pattern>
+		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
 	<error-page>
 		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
-		<location>/WEB-INF/errorpages/expired.jsf</location>
+		<location>/WEB-INF/errorpages/expired.xhtml</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/WEB-INF/errorpages/technicalError.jsf</location>
+		<location>/WEB-INF/errorpages/technicalError.xhtml</location>
 	</error-page>
 
 	<welcome-file-list>
-		<welcome-file>index.jsf</welcome-file>
+		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
 </web-app>

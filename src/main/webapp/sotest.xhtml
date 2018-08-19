@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<c:set var="bean" value="#{taskListSo}" />
+
+form #{bean} started: #{taskListSo.engineIsStarted()}
+<h:form id="form">
+
+  <ui:debug hotkey="e"></ui:debug>
+  
+  <p:dataTable selectionMode="single" value="#{bean.tasks}" var="task"
+    rowKey="#{task.id}">
+    <p:ajax event="rowSelect" listener="#{bean.onSelect}" />
+
+    <p:columns var="col" value="#{bean.columns}">
+      <f:facet name="header">#{col.header}</f:facet>
+      <h:outputText value="#{task[col.propertyName]}" />
+    </p:columns>
+
+
+    <p:column>
+      <h:commandButton id="startButton" value="start"
+        rendered="#{bean.engineIsStarted()}">
+        <f:ajax event="click" execute="@this"
+          listener="#{bean.startEngine}" render="@all" />
+      </h:commandButton>
+
+      <h:commandButton id="stopButton" value="stop"
+        rendered="#{bean.engineIsStopped()}">
+        <f:ajax event="click" execute="@this"
+          listener="#{bean.stopEngine}" render="@all" />
+      </h:commandButton>
+    </p:column>
+  </p:dataTable>
+
+  <p:panel id="ctxmenu" binding="#{taskListSo.buildTable}"></p:panel>
+
+</h:form>
+
+</html>

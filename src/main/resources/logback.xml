@@ -7,8 +7,7 @@
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
-			</Pattern>
+			<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
 		</layout>
 	</appender>
 
@@ -19,5 +18,6 @@
 	<logger name="org.springframework" level="debug" />
 	<logger name="org.springframework.web.servlet" level="trace" />
 	<logger name="org.rypox" level="trace" />
+	<logger name="com.sun.faces" level="trace" />
 
 </configuration>

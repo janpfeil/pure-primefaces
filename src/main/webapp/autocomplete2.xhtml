@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h2>Auto Market</h2>
+	<h:form>
+		<p:panelGrid columns="2">
+			<p:outputLabel for="autoCompleteId">Autocomplete without converter </p:outputLabel>
+			<p:autoComplete id="autoCompleteId"
+				value="#{autoMarket.selectedBrandId}" dropdown="true"
+				minQueryLength="2" queryDelay="250" forceSelection="true"
+				maxResults="21" emptyMessage="kein Vorschlag" cache="true"
+				completeMethod="#{autoMarket.completeBrand2}" var="option"
+				itemValue="#{option[0]}" itemLabel="#{option[1]}"
+				title="#{option[1]}" placeholder="enter query" readonly="false"
+				required="false">
+				<f:attribute name="attributeId" value="#{data.key}" />
+				<f:attribute name="viewName" value="#{data.optionSource}" />
+				<p:column>#{option[0]}</p:column>
+				<p:column>#{option[1]}</p:column>
+				<p:column>#{option[2]}</p:column>
+			</p:autoComplete>
+
+			<h4>String[] als Pojo von autoMarket.completeBrand2(), ohne
+				Konverter</h4>
+			<p:autoComplete cache="true" dropdown="true"
+				completeMethod="#{autoMarket.completeBrand2}" var="brand"
+				itemValue="#{brand[0]}" itemLabel="#{brand[1]}"
+				value="#{autoMarket.selectedBrandId}">
+				<p:column>
+					<h:outputText value="#{brand[0]}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{brand[1]}" />
+				</p:column>
+				<p:column>
+					<h:outputText value="#{brand[2]}" />
+				</p:column>
+			</p:autoComplete>
+
+			<h4>String[] als Pojo von autoMarket.completeBrand2() mit Object
+				Variable in backing bean, ohne Konverter</h4>
+			<h:panelGroup>
+				<p:autoComplete cache="true" dropdown="true"
+					completeMethod="#{autoMarket.completeBrand2}" var="brand"
+					itemValue="#{brand[0]}" itemLabel="#{brand[1]}"
+					value="#{autoMarket.selectedBrandId}">
+					<p:ajax event="itemSelect" update="autoCompleteLabel" />
+					<p:column>
+						<h:outputText value="#{brand[0]}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{brand[1]}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{brand[2]}" />
+					</p:column>
+				</p:autoComplete>
+
+				<p:outputLabel id="autoCompleteLabel"
+					value="#{autoMarket.selectedBrandId}"></p:outputLabel>
+			</h:panelGroup>
+
+			<p:message for="autoCompleteId" />
+
+		</p:panelGrid>
+	</h:form>
+
+
+	<h:link outcome="index">GET: zurück</h:link>
+
+</body>
+</html>

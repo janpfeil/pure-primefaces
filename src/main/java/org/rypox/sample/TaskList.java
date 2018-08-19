@@ -2,21 +2,17 @@ package org.rypox.sample;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.event.NamedEvent;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import org.rypox.sample.domain.Task;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class TaskList implements Serializable {
   private static final long serialVersionUID = 3872411784218998192L;
@@ -30,23 +26,23 @@ public class TaskList implements Serializable {
     this.tasks = new ArrayList<>();
     this.persistedTasks = new HashMap<>();
     this.lastId = 0L;
-    this.addTask(new Task("todo gestern", "machte ich gestern"));
-    this.addTask(new Task("todo heute", "mach ich morgen"));
-    this.addTask(new Task("todo morgen", "mach ich übermorgen"));
+    addTask(new Task("todo gestern", "machte ich gestern"));
+    addTask(new Task("todo heute", "mach ich morgen"));
+    addTask(new Task("todo morgen", "mach ich übermorgen"));
     this.columns = new ArrayList<>();
     this.columns.add(new ColumnModel("ID", "id"));
     this.columns.add(new ColumnModel("Subject", "subject"));
     this.columns.add(new ColumnModel("Description", "description"));
-    this.columns.add(new DropDownColumn("OS", "opsys", this.getOptions()));
+    this.columns.add(new DropDownColumn("OS", "opsys", getOptions()));
   }
 
   /**
    * key/value select options
-   * 
+   *
    * @return
    */
   public HashMap<String, String> getOptions() {
-    HashMap<String, String> options = new HashMap<>();
+    final HashMap<String, String> options = new HashMap<>();
     options.put("centos", "CentOS");
     options.put("fedora", "Fedora");
     options.put("debian", "Debian");
@@ -62,22 +58,22 @@ public class TaskList implements Serializable {
     return "add_item.jsf?faces-redirect=true";
   }
 
-  public String onEdit(Task task) {
+  public String onEdit(final Task task) {
     return "edit_item.jsf?faces-redirect=true&task_id=";
   }
 
-  public String onDelete(Task task) {
+  public String onDelete(final Task task) {
     this.persistedTasks.remove(task);
     this.tasks.remove(task);
     return null;
   }
 
-  public Task getTask(Long id) {
+  public Task getTask(final Long id) {
     return this.persistedTasks.get(id);
   }
 
-  public void addTask(Task task) {
-    Long key = generate();
+  public void addTask(final Task task) {
+    final Long key = generate();
     task.setId(key);
     this.persistedTasks.put(key, task);
     this.tasks.add(task);
@@ -87,13 +83,13 @@ public class TaskList implements Serializable {
     return this.lastId++;
   }
 
-  public void update(Task task) {
+  public void update(final Task task) {
     this.persistedTasks.put(task.getId(), task);
     // TODO update task in tasks
   }
 
   public List<ColumnModel> getColumns() {
-    return columns;
+    return this.columns;
   }
 
 }

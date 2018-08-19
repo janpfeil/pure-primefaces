@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+<body>
+  <ui:composition>
+    <p:panel collapsed="false" closable="false"
+      header="aktive Attributgruppe #{konfig.aktiveGruppeId}"
+      toggleable="true">
+
+      <pe:dynaForm id="dynaform" value="#{editFlowAction.editModel}"
+        var="data" buttonBarPosition="top">
+
+        <pe:dynaFormControl type="inputText" for="inputId"
+          styleClass="pe-dynaform-label">
+          <p:inputText id="inputId" value="#{data.value}"
+            title="#{data.key} readonly: #{data.readonly}"
+            placeholder="#{data.hint}"
+            readonly="#{false and data.readonly}"
+            required="#{data.required and param['form:back']==null}" />
+          <p:message for="inputId" />
+        </pe:dynaFormControl>
+
+        <pe:dynaFormControl type="label" for="labelId"
+          styleClass="pe-dynaform-label">
+          <p:inputText id="labelId" value="#{data.value}"
+            readonly="true" disabled="true" title="#{data.key}" />
+        </pe:dynaFormControl>
+
+        <pe:dynaFormControl type="panel" for="gruppe">
+          <p:panel id="gruppe" collapsed="false" />
+        </pe:dynaFormControl>
+
+        <pe:dynaFormControl type="checkBox" for="checkboxId">
+          <p:selectBooleanCheckbox id="checkboxId" value="#{data.value}"
+            required="false" label="#{data.key}"
+            readonly="#{data.readonly}" />
+        </pe:dynaFormControl>
+
+        <pe:dynaFormControl type="undefined" for="undefinedId">
+          <p:inputText id="undefinedId" value="#{data.value}"
+            style="border:1px solid red;"
+            title="#{data.key} readonly: #{data.readonly}"
+            placeholder="undefined" />
+          <p:message for="undefinedId" />
+        </pe:dynaFormControl>
+
+        <!-- TODO StringArrayConverter -->
+        <pe:dynaFormControl type="autoComplete" for="autoCompleteId">
+          <p:autoComplete id="autoCompleteId" value="#{data.value}"
+            dropdown="false" minQueryLength="2" queryDelay="250"
+            forceSelection="true" maxResults="21"
+            emptyMessage="kein Vorschlag" cache="true"
+            converterMessage="converter in action" converter="#{optionsConverter}"
+            completeMethod="#{editFlowAction.completeText}" var="option"
+            itemValue="#{option.key}" itemLabel="#{option.label}"
+            title="#{data.key}, readonly: #{data.readonly}, #{option}"
+            placeholder="#{data.hint}"
+            readonly="#{false and data.readonly}"
+            required="#{data.required}">
+            <f:attribute name="attributeId" value="#{data.key}" />
+            <f:attribute name="viewName" value="#{data.optionSource}" />
+            <p:column>#{option.key}</p:column>
+            <p:column>#{option.label}</p:column>
+          </p:autoComplete>
+          <p:message for="autoCompleteId" />
+        </pe:dynaFormControl>
+
+        <!-- TODO editFlowAction.getOptions ersetzen durch data.getOptions, option laden bei ServiceConfigController.buildGruppe -->
+        <pe:dynaFormControl type="radioButton" for="radioId">
+          <p:selectOneRadio id="radioId" value="#{data.value}"
+            title="#{data.key}" disabled="#{data.readonly}">
+            <f:selectItems value="#{data.options}" var="option"
+              itemValue="#{option.key}"
+              itemLabel="#{option.key}:#{option.label}"
+              itemDescription="#{option.label}" />
+          </p:selectOneRadio>
+        </pe:dynaFormControl>
+
+        <pe:dynaFormControl type="dropDown" for="dropdownId">
+          <p:selectOneMenu id="dropdownId" value="#{data.value}"
+            title="#{data.key}" disabled="#{data.readonly}"
+            required="#{data.required}">
+            <p:ajax listener="#{editFlowAction.doChange}"
+              process="@form" update="@form" />
+            <f:selectItems value="#{data.options}" var="option"
+              itemValue="#{option.key}"
+              itemLabel="#{option.key}:#{option.label}"
+              itemDescription="#{option.label}" />
+          </p:selectOneMenu>
+        </pe:dynaFormControl>
+
+        <!-- table -->
+        <pe:dynaFormControl type="table" for="hiddenInput">
+          <!-- Trick, um Tabelle einzubinden. Sonst beschwert sich DyncaFormControl, dass dataTable kein InputElement ist. -->
+          <p:inputText id="hiddenInput" rendered="false"></p:inputText>
+
+
+          <p:dataTable id="tableAufrufKanal" value="#{data.value}"
+            var="item" sortMode="multiple"
+            rendered="#{data.type=='table'}" editable="true"
+            resizableColumns="true" liveResize="true"
+            draggableColumns="true">
+
+            <p:columns var="col" value="#{data.columns}"
+              sortBy="#{item[col.propertyName]}">
+              <f:facet name="header">#{col.header}</f:facet>
+              <p:cellEditor rendered="#{col.type=='TX'}">
+                <f:facet name="output">
+						#{item[col.propertyName]}
+					</f:facet>
+                <f:facet name="input">
+                  <p:inputText value="#{item[col.propertyName]}" />
+                </f:facet>
+              </p:cellEditor>
+              <p:cellEditor rendered="#{col.type=='DD'}">
+                <f:facet name="output">
+						#{item[col.propertyName]}
+					</f:facet>
+                <f:facet name="input">
+                  <!-- the getter method of task: task.get<property name> -->
+                  <p:selectOneMenu value="#{item[col.propertyName]}"
+                    style="width:100%">
+                    <f:selectItems value="#{col.options}" var="option"
+                      itemLabel="#{option[1]}" itemValue="#{option[0]}" />
+                  </p:selectOneMenu>
+                </f:facet>
+              </p:cellEditor>
+            </p:columns>
+
+            <p:column>
+              <f:facet name="header">Action</f:facet>
+              <p:link value="Edit" outcome="edit_item">
+                <f:param name="id" value="#{item.svkmktid}" />
+              </p:link>
+              |
+              <p:commandLink value="Delete"
+                action="#{data.onDelete(item)}"
+                update="tableAufrufKanal" />
+            </p:column>
+            <p:column>
+              <p:rowEditor />
+            </p:column>
+          </p:dataTable>
+
+          <h:commandButton action="#{data.onAdd()}" value="Add" />
+
+        </pe:dynaFormControl>
+
+      </pe:dynaForm>
+
+    </p:panel>
+    <h:outputStylesheet id="dynaFormCSS">  
+    .pe-dynaform-cell {  
+        padding-bottom: 0px;  
+    }  
+  
+    .pe-dynaform-label {  
+        text-align: left;  
+        padding: 0px 0px 0 0;  
+    }  
+  
+    .pe-dynaform-cell.separator {  
+        padding: 10px 0 10px 0;  
+    }  
+  
+    .pe-dynaform-cell.separator .separatorText {  
+        width: 15%;  
+        padding-left: 0;
+    }  
+  
+    .ui-autocomplete .ui-autocomplete-dropdown {  
+        right: -2px;  
+    }  
+    
+    //frame-layout.css überschreiben
+    input[type=text],input[type=password],textarea {
+      font-family:Verdana;
+      font-size:11px;
+      border:1px solid #ccc;
+      margin-bottom:0px;
+      padding:4px;
+      color:#333;
+    }
+</h:outputStylesheet>
+  </ui:composition>
+</body>
+</html>

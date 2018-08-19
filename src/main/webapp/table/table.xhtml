@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+  <h2>edit entries</h2>
+  <h:form>
+    <h:dataTable value="#{taskList.tasks}" var="item">
+      <h:column>
+        <f:facet name="header">Subject</f:facet>
+			#{item.subject}
+			</h:column>
+      <h:column>
+        <f:facet name="header">Description</f:facet>
+			#{item.description}
+			</h:column>
+
+      <h:column>
+        <f:facet name="header">Action</f:facet>
+        <h:link value="Edit" outcome="edit_item">
+          <f:param name="id" value="#{item.id}" />
+        </h:link>
+        <h:commandLink value="Delete"
+          action="#{taskList.onDelete(item)}" />
+      </h:column>
+
+    </h:dataTable>
+
+    <h:commandButton action="#{taskList.onAdd()}" value="Add" />
+  </h:form>
+
+  <h:link outcome="table_dyncolumn" value="Table with Dynamic Columns"></h:link>
+</body>
+</html>
