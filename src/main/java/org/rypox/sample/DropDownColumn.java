@@ -19,8 +19,8 @@ public class DropDownColumn extends ColumnModel {
    * @param header
    * @param propertyName
    */
-  public DropDownColumn(String header, String propertyName) {
-    super(header, propertyName);
+	public DropDownColumn(String header, String propertyName, boolean readonly) {
+		super(header, propertyName, readonly);
     super.setType("DD");
   }
 
@@ -29,8 +29,8 @@ public class DropDownColumn extends ColumnModel {
    * @param string2
    * @param options2
    */
-  public DropDownColumn(String header, String propertyName, HashMap<String, String> options) {
-    this(header, propertyName);
+	public DropDownColumn(String header, String propertyName, boolean readonly, Map<String, String> options) {
+		this(header, propertyName, readonly);
     this.options = options;
   }
 
