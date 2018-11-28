@@ -41,8 +41,8 @@ public class TaskList implements Serializable {
    *
    * @return
    */
-  public HashMap<String, String> getOptions() {
-    final HashMap<String, String> options = new HashMap<>();
+  public Map<String, String> getOptions() {
+    HashMap<String, String> options = new HashMap<>();
     options.put("centos", "CentOS");
     options.put("fedora", "Fedora");
     options.put("debian", "Debian");

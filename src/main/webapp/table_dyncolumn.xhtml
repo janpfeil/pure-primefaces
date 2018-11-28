@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
-<body>
+<h:body>
 	<h2>Task</h2>
 	<h:form>
 
@@ -25,7 +25,10 @@
 					</f:facet>
 					<f:facet name="input">
 						<!-- the getter method of task: task.get<property name> -->
-						<p:inputText value="#{item[col.propertyName]}" />
+						<p:inputText value="#{item[col.propertyName]}"
+							rendered="#{!col.readonly}" />
+						<p:outputLabel value="#{item[col.propertyName]}"
+							rendered="#{col.readonly}" />
 					</f:facet>
 				</p:cellEditor>
 				<p:outputLabel value="#{col.type}"></p:outputLabel>
@@ -37,7 +40,7 @@
 					<f:facet name="input">
 						<!-- the getter method of task: task.get<property name> -->
 						<p:selectOneMenu value="#{item[col.propertyName]}">
-							<f:selectItems value="#{col.options}" />
+							<f:selectItems value="#{taskList.options}" />
 						</p:selectOneMenu>
 					</f:facet>
 				</p:cellEditor>
@@ -51,7 +54,12 @@
 			</p:column>
 			<p:column>
 				<f:facet name="header">Action</f:facet>
-				<p:commandLink value="Delete" action="#{taskList.onDelete(item)}" update="taskTable" title="delete this entry, update on table though property update linked to dataTable id"/>
+				<p:commandLink value="Delete" action="#{taskList.onDelete(item)}"
+					update="taskTable"
+					title="delete this entry, update on table though property update linked to dataTable id" />
+				<p:commandButton value="Delete" action="#{taskList.onDelete(item)}"
+					update="taskTable"
+					title="delete this entry, update on table though property update linked to dataTable id" />
 			</p:column>
 			<p:column>
 				<p:rowEditor />
@@ -60,5 +68,5 @@
 		<h:commandButton action="#{taskList.onAdd()}" value="Add" />
 	</h:form>
 
-</body>
+</h:body>
 </html>
