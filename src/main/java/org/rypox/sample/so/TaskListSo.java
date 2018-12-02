@@ -50,10 +50,10 @@ public class TaskListSo implements Serializable {
     addTask(new Task("todo heute", "mach ich morgen"));
     addTask(new Task("todo morgen", "mach ich übermorgen"));
     this.columns = new ArrayList<>();
-    this.columns.add(new ColumnModel("ID", "id"));
-    this.columns.add(new ColumnModel("Subject", "subject"));
-    this.columns.add(new ColumnModel("Description", "description"));
-    this.columns.add(new DropDownColumn("OS", "opsys", getOptions()));
+    this.columns.add(new ColumnModel("ID", "id",true));
+    this.columns.add(new ColumnModel("Subject", "subject",false));
+    this.columns.add(new ColumnModel("Description", "description",false));
+    this.columns.add(new DropDownColumn("OS", "opsys",false, getOptions()));
 
     this.isStarted = false;
     this.isStopped = true;

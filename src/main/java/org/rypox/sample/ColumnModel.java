@@ -7,14 +7,16 @@ public class ColumnModel implements Serializable {
   private String header;
   private String propertyName;
   private String type;
+  private boolean readonly;
 
-  public final static String[] COLUMN_TYPES = { "TX", "CB", "DD" };
+  protected static final String[] COLUMN_TYPES = { "TX", "CB", "DD" };
 
-  public ColumnModel(final String header, final String propertyName) {
+  public ColumnModel(final String header, final String propertyName, boolean readonly) {
     super();
     this.header = header;
     this.propertyName = propertyName;
     this.type = "TX";
+    this.readonly = readonly;
   }
 
   public String getHeader() {
@@ -39,6 +41,14 @@ public class ColumnModel implements Serializable {
 
   public void setType(final String type) {
     this.type = type;
+  }
+
+  public boolean isReadonly() {
+    return readonly;
+  }
+
+  public void setReadonly(boolean readonly) {
+    this.readonly = readonly;
   }
 
 }
