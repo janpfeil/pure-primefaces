@@ -1,5 +1,6 @@
-/target/
-/.settings/
-/.classpath
-/.project
-/.tern-project
+target/
+.settings/
+.classpath
+.project
+.tern-project
+.faces-config.xml.jsfdia
