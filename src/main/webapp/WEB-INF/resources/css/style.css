@@ -1,0 +1,19 @@
+body {
+	font-family: sans-serif;
+}
+
+.box {
+	display: none;
+	background: #ccc;
+	width: 200px;
+	height: 100px;
+}
+
+#trigger:checked + .box {
+	display: block;
+}
+
+#trigger {
+	/*	display: none;*/
+	
+}

@@ -10,7 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 
 /**
  * @author jan.pfeil
@@ -51,14 +51,14 @@ public class MessageDialogBean implements Serializable {
   }
 
   public void updateDialog() {
-    final RequestContext context = RequestContext.getCurrentInstance();
-    context.update("messageForm:messageDialogHeader");
+    final PrimeFaces pf = PrimeFaces.current();
+    pf.ajax().update("messageForm:messageDialogHeader");
   }
 
   private void show() {
     updateDialog();
-    final RequestContext context = RequestContext.getCurrentInstance();
-    context.execute("PF('varDialog').show();");
+    final PrimeFaces pf = PrimeFaces.current();
+    pf.executeScript("PF('varDialog').show();");
     FacesContext.getCurrentInstance().addMessage(this.messageDialogId, this.message);
   }
 

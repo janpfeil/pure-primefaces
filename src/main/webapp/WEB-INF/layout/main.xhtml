@@ -1,22 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title><ui:insert name="title">Default Title</ui:insert></title>
-	<h:outputStylesheet name="css/style.css" />
+  <title><ui:insert name="title">Default Title</ui:insert></title>
+  <h:outputStylesheet name="css/faces.css" />
+  <h:outputStylesheet name="css/style.css" />
 </h:head>
 
 <body>
-	<ui:debug />
-	<div class="heading">
-		<h2>
-			<ui:insert name="heading" />
-		</h2>
-	</div>
+  <ui:composition template="/WEB-INF/layout/portal.xhtml">
 
-	<div class="content" style="font-family: sans-serif;">
-		<ui:insert name="content" />
-	</div>
+    <ui:define name="top-navigation">
+      <div style="border: 1px solid brown; margin-bottom:3px">
+        <h3>Top Navigation provided by layout/main.xhtml template</h3>
+        <ul>
+          <li><h:link outcome="/index" value="Home" /></li>
+          <li><h:link outcome="/next" value="Next" /></li>
+          <li><h:link outcome="/shop/catalogue" value="Shop" /></li>
+        </ul>
+        <h:form>
+          <p:menubar>
+            <p:menuitem value="static menu" outcome="/menu" />
+            <p:submenu label="Seiten">
+              <p:menuitem value="Haupmenu" outcome="/menu" />
+              <p:menuitem value="Seite 1" outcome="/menu/menu_page_1" />
+              <p:menuitem value="Seite 2" outcome="/menu/menu_page_2" />
+              <p:menuitem value="Seite 3" outcome="/menu/menu_page_3" />
+            </p:submenu>
+          </p:menubar>
+          <p:menubar model="#{menuBean.model}"/>
+        </h:form>
+
+        <p:outputLabel style="color:brown" value="top navigation end here"></p:outputLabel>
+      </div>
+    </ui:define>
+
+  </ui:composition>
 </body>
 </html>

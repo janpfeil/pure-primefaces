@@ -30,6 +30,11 @@ public class MessageBean implements Serializable {
     this.label = label;
   }
 
+  public String onMenu() {
+    System.out.println("onMenu:");
+    return "/menu/menu_page_1";
+  }
+
   public void onSave() {
     System.out.println("onSave:" + this.message);
     this.label = this.message;

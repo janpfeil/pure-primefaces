@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <h:head>
-  <h:outputScript library="javax.faces" name="jsf.js" target="body" />
 </h:head>
 <h:body>
+  <ui:debug hotkey="x" />
 
   <h2>JSF 2.2 basic ajax example</h2>
 
@@ -39,12 +37,14 @@
     </p>
   </h:form>
   <ul>
-    <li><h:link value="AutoComplete with POJO"
-        outcome="autocomplete" /></li>
+    <li><h:link value="AutoComplete with POJO" outcome="autocomplete" /></li>
 
     <li><h:link outcome="table/table">task list</h:link></li>
     <li><h:link outcome="menu">Menu</h:link></li>
+    <li><h:link outcome="images">p:graphicImage component</h:link></li>
 
   </ul>
+
+
 </h:body>
 </html>

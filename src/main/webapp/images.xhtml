@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+</h:head>
+<h:body>
+  <ui:debug hotkey="x" />
+
+  <h2>Primefaces graphicimage component</h2>
+
+  <a href="http://primefaces.org/showcase/ui/multimedia/graphicImage.xhtml">Primefaces Showcase</a>
+
+  <h:form>
+    <p>
+      <h:link value="Back" outcome="index" />
+    </p>
+  </h:form>
+
+  <p:panelGrid columns="1" layout="grid">
+    <p:graphicImage value="/resources/images/dataloss.png" title="external image resource" width="600px" />
+    <p:outputLabel
+      value="resource path given through graphicImage value attribute /resources/images/dataloss.png, directly accessible from url" />
+  </p:panelGrid>
+  <p:panelGrid columns="1" layout="grid">
+    <p:graphicImage name="images/eurocoin.jpg" title="jsf internal image resource" width="400px" />
+    <p:outputLabel value="resource path in graphicImage name='images/dataloss.png', relative to the WEB-INF/resources directory" />
+  </p:panelGrid>
+</h:body>
+</html>

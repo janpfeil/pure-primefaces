@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+
+html {
+	font-family: "Lucida Sans", "Liberation Sans", sans-serif;
+}
+
+.heading {
+	background-color: lightblue;
+	border: 5px solid blue;
+	padding: 5px
+}
+
+.content {
+	border: 5px solid red;
+	padding: 5px
+}
+
+.footer {
+	background-color: lightgreen;
+	border: 5px solid green;
+	padding: 5px
+}
+
+span.uitype {
+	background-color: lightgray;
+	font-size: 0.8em;
+}
+
+span.heading {
+	color: blue;
+	border: 1px dotted blue;
+}
+
+span.content {
+	color: red;
+	border: 1px dotted red;
+}
+
+ul.vnav {
+	list-style-type: none;
+	overflow: hidden;
+	background-color: #333;
+	width: 10em;
+}
+
+ul.vnav li {
+	/*float: left;*/
+	
+}
+
+ul.vnav li a {
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+ul.vnav li a:hover {
+	background-color: #111;
+}
