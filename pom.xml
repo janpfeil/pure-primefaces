@@ -1,9 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.rypox.sample</groupId>
   <artifactId>pure-primefaces</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>war</packaging>
   <parent>
     <groupId>org.rypox</groupId>
@@ -148,7 +147,7 @@
     <url>http://git.rypox.int/cgit/rypox/web/pure-primefaces.git/</url>
     <developerConnection>scm:git:ssh://git.rypox.int/rypox/web/pure-primefaces.git</developerConnection>
     <connection>scm:git:ssh://git.rypox.int/rypox/web/pure-primefaces.git</connection>
-    <tag>master</tag>
+    <tag>pure-primefaces-0.0.1</tag>
   </scm>
   <organization>
     <name>rypox.org</name>
