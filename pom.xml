@@ -127,7 +127,7 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
- 
+
   <repositories>
     <repository>
       <id>prime-repo</id>
@@ -135,4 +135,30 @@
       <url>http://repository.primefaces.org</url>
     </repository>
   </repositories>
+  <ciManagement>
+    <system>Jenkins</system>
+    <url>http://build.rypox.int:8181/job/pure-primefaces/</url>
+  </ciManagement>
+  <scm>
+    <url>http://git.rypox.int/cgit/rypox/web/pure-primefaces.git/</url>
+    <developerConnection>scm:git:ssh://git.rypox.int/rypox/web/pure-primefaces.git</developerConnection>
+    <connection>scm:git:ssh://git.rypox.int/rypox/web/pure-primefaces.git</connection>
+    <tag>master</tag>
+  </scm>
+  <organization>
+    <name>rypox.org</name>
+  </organization>
+  <distributionManagement>
+    <repository>
+      <id>rypox-releases</id>
+      <name>rypox.net releases</name>
+      <url>http://build.rypox.int:8081/repository/rypox-releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>rypox-snapshots</id>
+      <name>rypox.net snapshots</name>
+      <url>http://build.rypox.int:8081/repository/rypox-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
 </project>
