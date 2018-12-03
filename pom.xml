@@ -5,6 +5,11 @@
   <artifactId>pure-primefaces</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  <parent>
+    <groupId>org.rypox</groupId>
+    <artifactId>rypox-parent</artifactId>
+    <version>0.2.4</version>
+  </parent>
 
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
@@ -148,17 +153,4 @@
   <organization>
     <name>rypox.org</name>
   </organization>
-  <distributionManagement>
-    <repository>
-      <id>rypox-releases</id>
-      <name>rypox.net releases</name>
-      <url>http://build.rypox.int:8081/repository/rypox-releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>rypox-snapshots</id>
-      <name>rypox.net snapshots</name>
-      <url>http://build.rypox.int:8081/repository/rypox-snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
-
 </project>
