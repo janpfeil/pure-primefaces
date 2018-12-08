@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:p="http://primefaces.org/ui">
 <h:head>
   <title><ui:insert name="title">Default Title</ui:insert></title>
   <h:outputStylesheet name="css/faces.css" />
 </h:head>
 
 <body>
-  <ui:debug hotkey="x"
-    rendered="#{facesContext.application.projectStage == 'Development'}" />
+  <ui:debug hotkey="x" rendered="#{facesContext.application.projectStage == 'Development'}" />
 
   <div>
     <ui:insert name="top-navigation">default top navigation</ui:insert>
   </div>
+  <p:messages id="globalMessages" />
+
   <div class="heading">
     <h2>
       <ui:insert name="heading" />
@@ -21,7 +21,9 @@
   </div>
 
   <div class="content">
-    <ui:insert name="content" />
+    <ui:insert name="content">
+    content nicht überschrieben
+    </ui:insert>
   </div>
 
   <div class="footer">

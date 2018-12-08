@@ -1,9 +1,8 @@
 /**
- * 
+ *
  */
 package org.rypox.sample;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -19,8 +18,8 @@ public class DropDownColumn extends ColumnModel {
    * @param header
    * @param propertyName
    */
-	public DropDownColumn(String header, String propertyName, boolean readonly) {
-		super(header, propertyName, readonly);
+  public DropDownColumn(final String header, final String propertyName, final boolean readonly) {
+    super(header, propertyName, readonly);
     super.setType("DD");
   }
 
@@ -29,16 +28,16 @@ public class DropDownColumn extends ColumnModel {
    * @param string2
    * @param options2
    */
-	public DropDownColumn(String header, String propertyName, boolean readonly, Map<String, String> options) {
-		this(header, propertyName, readonly);
+  public DropDownColumn(final String header, final String propertyName, final boolean readonly, final Map<String, String> options) {
+    this(header, propertyName, readonly);
     this.options = options;
   }
 
   public Map<String, String> getOptions() {
-    return options;
+    return this.options;
   }
 
-  public void setOptions(Map<String, String> options) {
+  public void setOptions(final Map<String, String> options) {
     this.options = options;
   }
 

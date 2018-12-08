@@ -12,7 +12,7 @@
   <ui:composition template="/WEB-INF/layout/portal.xhtml">
 
     <ui:define name="top-navigation">
-      <div style="border: 1px solid brown; margin-bottom:3px">
+      <div style="border: 1px solid brown; margin-bottom: 3px">
         <h3>Top Navigation provided by layout/main.xhtml template</h3>
         <ul>
           <li><h:link outcome="/index" value="Home" /></li>
@@ -23,19 +23,22 @@
           <p:menubar>
             <p:menuitem value="static menu" outcome="/menu" />
             <p:submenu label="Seiten">
-              <p:menuitem value="Haupmenu" outcome="/menu" />
+              <p:menuitem value="Haupmenü" outcome="/menu" />
+              <p:menuitem value="Settings" outcome="/settings" />
               <p:menuitem value="Seite 1" outcome="/menu/menu_page_1" />
               <p:menuitem value="Seite 2" outcome="/menu/menu_page_2" />
               <p:menuitem value="Seite 3" outcome="/menu/menu_page_3" />
             </p:submenu>
           </p:menubar>
-          <p:menubar model="#{menuBean.model}"/>
+          <p:menubar model="#{menuBean.model}" />
         </h:form>
 
         <p:outputLabel style="color:brown" value="top navigation end here"></p:outputLabel>
       </div>
     </ui:define>
-
+    <ui:define name="content">
+      <ui:insert name="pageContent">main.xhtml</ui:insert>
+    </ui:define>
   </ui:composition>
 </body>
 </html>

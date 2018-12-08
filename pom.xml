@@ -17,6 +17,8 @@
     <versions-maven-plugin-version>2.7</versions-maven-plugin-version>
     <maven-clean-version>3.1.0</maven-clean-version>
     <maven-compiler-version>3.8.0</maven-compiler-version>
+    <primefaces-version>6.2.12</primefaces-version>
+    <primefaces-extensions-version>6.2.10</primefaces-extensions-version>
   </properties>
 
   <build>
@@ -107,22 +109,22 @@
     <dependency>
       <groupId>org.primefaces</groupId>
       <artifactId>primefaces</artifactId>
-      <version>6.2.10</version>
-    </dependency>
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>font-awesome</artifactId>
-      <version>4.6.3</version>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.1.11</version>
+      <version>${primefaces-version}</version>
     </dependency>
     <dependency>
       <groupId>org.primefaces.extensions</groupId>
       <artifactId>primefaces-extensions</artifactId>
-      <version>6.2.10</version>
+      <version>${primefaces-extensions-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>font-awesome</artifactId>
+      <version>5.5.0</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.0</version>
     </dependency>
     <dependency>
       <groupId>javax.el</groupId>

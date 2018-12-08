@@ -21,7 +21,7 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class DropdownView implements Serializable {
-
+  private static final long serialVersionUID = 1L;
   private final Map<String, Map<String, String>> data = new HashMap<>();
   private String country;
   private String city;
