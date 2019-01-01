@@ -8,7 +8,7 @@
 
 <h:head>
 	<h:outputStylesheet library="webjars"
-		name="font-awesome/4.6.3/css/font-awesome-jsf.css" />
+		name="font-awesome/5.5.0/css/font-awesome-jsf.css" />
 </h:head>
 <h:body>
 	<h2>Tasks (primefaces dataTable)</h2>
@@ -28,7 +28,10 @@
 					</f:facet>
 					<f:facet name="input">
 						<!-- the getter method of task: task.get<property name> -->
-						<p:inputText value="#{item[col.propertyName]}" />
+						<p:inputText value="#{item[col.propertyName]}"
+							rendered="#{!col.readonly}" />
+						<p:outputLabel value="#{item[col.propertyName]}"
+							rendered="#{col.readonly}" />
 					</f:facet>
 				</p:cellEditor>
 				<p:cellEditor rendered="#{col.type=='DD'}">
@@ -39,10 +42,11 @@
 					<f:facet name="input">
 						<!-- the getter method of task: task.get<property name> -->
 						<p:selectOneMenu value="#{item[col.propertyName]}">
-							<f:selectItems value="#{col.options}" />
+							<f:selectItems value="#{taskList.options}" />
 						</p:selectOneMenu>
 					</f:facet>
 				</p:cellEditor>
+				<p:outputLabel value="#{col.type}"></p:outputLabel>
 			</p:columns>
 
 			<p:column>

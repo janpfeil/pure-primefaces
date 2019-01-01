@@ -14,10 +14,15 @@
 		requiredMessage="Bad request, please use a link from within the system." />
 </f:metadata>
 <h:head>
-	<h:outputStylesheet library="webjars"
-		name="font-awesome/4.6.3/css/font-awesome-jsf.css" />
+	<!-- 
+	<h:outputStylesheet name="css/style.css" />
+ -->
+ <f:facet name="last">
+		<h:outputStylesheet library="webjars"
+			name="font-awesome/5.5.0/css/fontawesome.css" />
+	</f:facet>
 </h:head>
-<body>
+<h:body>
 	<h2>Item</h2>
 	<h:form id="editForm">
 		<p:messages id="msg"/>
@@ -36,12 +41,16 @@
 			</p:selectOneMenu>
 		</p:panelGrid>
 
-		<p:commandButton action="#{editTaskBean.onSave()}" value="Save" update="msg"
-			icon="fa fa-fw fa-save" />
-	</h:form>
+    <p:panelGrid columns="2">
+      <h:outputLabel value="Primefaces fonts (since 6.2.11)" />
+      <p:commandButton action="#{editTaskBean.onSave()}" value="Save" update="msg" icon="pi pi-save" />
+      <h:outputLabel value="Awesome fonts (5.5.0)" />
+      <p:commandButton action="#{editTaskBean.onSave()}" value="Save" update="msg" icon="fa fa-fw fa-save" />
+    </p:panelGrid>
+  </h:form>
 
 	<h:link value="Cancel" outcome="table" />
 	<h:button value="Cancel" outcome="table_dyncolumn"></h:button>
 
-</body>
+</h:body>
 </html>
