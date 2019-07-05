@@ -21,16 +21,16 @@
 		<ui:define name="content">
 			<span class="uitype content">ui element name:content </span>
 			<h:form>
-				<h2>simple lazy list</h2>
+				<h2>lazy list with filter</h2>
 				<p:dataTable value="#{productsView.model}" lazy="true" var="product"
 					rowKey="#{product.productId}" rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="10,30,100">
 
-					<p:column headerText="Id">
+					<p:column headerText="Id" filterBy="#{product.productId}">
 						<h:outputText value="#{product.productId}" />
 					</p:column>
-					<p:column headerText="Name">
+					<p:column headerText="Name" filterBy="#{product.name}">
 						<h:outputText value="#{product.name}" />
 					</p:column>
 

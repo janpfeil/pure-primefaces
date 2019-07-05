@@ -27,9 +27,12 @@
               <p:menuitem value="Settings" outcome="/settings" />
               <p:menuitem value="Seite 1" outcome="/menu/menu_page_1" />
               <p:menuitem value="Seite 2" outcome="/menu/menu_page_2" />
-              <p:menuitem value="Seite 3" outcome="/menu/menu_page_3" />
+              <p:menuitem value="Simple Lazy Table" outcome="/menu/menu_page_3" />
+              <p:menuitem value="Filtered Lazy Table" outcome="/menu/menu_page_4" />
             </p:submenu>
           </p:menubar>
+          
+          <p:outputLabel value="next menu displays model which provides menu items"></p:outputLabel>
           <p:menubar model="#{menuBean.model}" />
         </h:form>
 
