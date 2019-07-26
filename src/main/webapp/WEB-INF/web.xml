@@ -32,7 +32,7 @@
   <!-- theme -->
   <context-param>
     <param-name>primefaces.THEME</param-name>
-    <param-value>nova-colored</param-value>
+    <param-value>nova-light</param-value>
     <!--
     <param-value>omega</param-value>
    	-->

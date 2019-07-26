@@ -40,7 +40,9 @@
       </div>
     </ui:define>
     <ui:define name="content">
-      <ui:insert name="pageContent">main.xhtml</ui:insert>
+      <h:panelGroup rendered="false">
+        <ui:insert name="pageContent">main.xhtml</ui:insert>
+      </h:panelGroup>
     </ui:define>
   </ui:composition>
 </body>
