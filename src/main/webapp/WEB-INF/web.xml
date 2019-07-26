@@ -41,7 +41,24 @@
     <param-name>primefaces.FONT_AWESOME</param-name>
     <param-value>true</param-value>
   </context-param>
-  
+
+  <module-name>pureprimefaces</module-name>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Shop</web-resource-name>
+      <url-pattern>/shop/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>webshop_user</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  <security-role>
+    <role-name>webshop_user</role-name>
+  </security-role>
+    
   <servlet>
     <servlet-name>facesServlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
