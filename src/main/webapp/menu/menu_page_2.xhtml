@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core"
-  xmlns:p="http://primefaces.org/ui"
-  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:rypox="http://rypox.org/taglib">
 <h:head>
 </h:head>
 <h:body>
 manches wiederholt sich
   <ui:decorate template="../WEB-INF/layout/main.xhtml">
 
-    <ui:define name="heading">
-      <h3>Seite 2</h3>
-      <p>
-        Template from WEB-INF/layout/main.xhtml inside <b>ui:define</b>
-        for heading
-      </p>
-    </ui:define>
+  <ui:define name="heading">
+   <h3>Seite 2</h3>
+   <p>
+    Template from WEB-INF/layout/main.xhtml inside <b>ui:define</b> for heading
+   </p>
+  </ui:define>
 
-    <ui:define name="content">
-      <span class="uitype content">ui element name:content </span>
-      <h:form>
-        <h:outputLabel value="Show a message using ajax: ">
-          <h:inputText id="message" value="#{messageBean.message}" />
-        </h:outputLabel>
+  <ui:define name="content">
 
-        <h:commandButton value="Show Message">
-          <f:ajax execute="message" render="output" />
-        </h:commandButton>
-      </h:form>
+   <div class="ui-fluid">
+    <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-3, ui-g-12 ui-md-9" layout="grid">
+     <rypox:labelValue label="Caption 01" value="161,83" />
+     <rypox:labelValue label="Caption 02" value="651,81" />
+     <rypox:labelValue label="Caption 03" value="123,25" />
+    </p:panelGrid>
+   </div>
+   <div>
+    <p:panelGrid columns="2" styleClass="ui-noborder" columnClasses="ui-g-12 ui-md-1, ui-g-12 ui-md-11" layout="grid">
+     <rypox:label label="Caption 01" value="161,83" />
+     <rypox:label label="Caption 02" value="651,81" />
+     <rypox:label label="Caption 03 is very long" value="123,25" />
+    </p:panelGrid>
+   </div>
 
-      <p>
-        <h:outputText id="output" value="#{messageBean.message}" />
-      </p>
-
-    </ui:define>
-  </ui:decorate>
+  </ui:define>
+ </ui:decorate>
 
 </h:body>
 </html>
