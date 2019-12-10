@@ -23,8 +23,8 @@ import org.primefaces.component.contextmenu.ContextMenu;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.panel.Panel;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.model.menu.BaseMenuModel;
 import org.primefaces.model.menu.DefaultMenuItem;
-import org.primefaces.model.menu.DynamicMenuModel;
 import org.rypox.sample.ColumnModel;
 import org.rypox.sample.DropDownColumn;
 import org.rypox.sample.domain.Task;
@@ -50,10 +50,10 @@ public class TaskListSo implements Serializable {
     addTask(new Task("todo heute", "mach ich morgen"));
     addTask(new Task("todo morgen", "mach ich übermorgen"));
     this.columns = new ArrayList<>();
-    this.columns.add(new ColumnModel("ID", "id",true));
-    this.columns.add(new ColumnModel("Subject", "subject",false));
-    this.columns.add(new ColumnModel("Description", "description",false));
-    this.columns.add(new DropDownColumn("OS", "opsys",false, getOptions()));
+    this.columns.add(new ColumnModel("ID", "id", true));
+    this.columns.add(new ColumnModel("Subject", "subject", false));
+    this.columns.add(new ColumnModel("Description", "description", false));
+    this.columns.add(new DropDownColumn("OS", "opsys", false, getOptions()));
 
     this.isStarted = false;
     this.isStopped = true;
@@ -90,10 +90,10 @@ public class TaskListSo implements Serializable {
     final ContextMenu ctxMenu = new ContextMenu();
     ctxMenu.setFor("tableId");
 
-    final DynamicMenuModel ctxModel = new DynamicMenuModel();
+    final BaseMenuModel ctxModel = new BaseMenuModel();
     final DefaultMenuItem menuItem = new DefaultMenuItem();
     menuItem.setValue("Hello Menu Item");
-    ctxModel.addElement(menuItem);
+    ctxModel.getElements().add(menuItem);
 
     ctxMenu.setModel(ctxModel);
 

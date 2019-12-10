@@ -28,25 +28,25 @@ public class MenuBean implements Serializable {
     DefaultMenuItem item = new DefaultMenuItem("External Link primefaces.org");
     item.setUrl("http://www.primefaces.org");
     item.setIcon("pi pi-home");
-    firstSubmenu.addElement(item);
-    this.model.addElement(firstSubmenu);
+    firstSubmenu.getElements().add(item);
+    this.model.getElements().add(firstSubmenu);
     // Second submenu
     final DefaultSubMenu secondSubmenu = new DefaultSubMenu("Dynamic Actions");
     item = new DefaultMenuItem("Save");
     item.setIcon("pi pi-save");
     item.setCommand("#{menuBean.save}");
     item.setUpdate("");
-    secondSubmenu.addElement(item);
+    secondSubmenu.getElements().add(item);
     item = new DefaultMenuItem("Delete");
     item.setIcon("pi pi-trash");
     item.setCommand("#{menuBean.delete}");
     item.setAjax(false);
-    secondSubmenu.addElement(item);
+    secondSubmenu.getElements().add(item);
     item = new DefaultMenuItem("Redirect");
     item.setIcon("pi pi-search");
     item.setCommand("#{menuBean.redirect}");
-    secondSubmenu.addElement(item);
-    this.model.addElement(secondSubmenu);
+    secondSubmenu.getElements().add(item);
+    this.model.getElements().add(secondSubmenu);
   }
 
   public MenuModel getModel() {
