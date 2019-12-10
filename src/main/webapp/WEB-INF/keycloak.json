@@ -1,0 +1,8 @@
+{
+  "realm": "rypox.int",
+  "auth-server-url": "http://localhost:8180/auth",
+  "ssl-required": "none",
+  "resource": "pureprimefaces",
+  "public-client": true,
+  "confidential-port": 0
+}

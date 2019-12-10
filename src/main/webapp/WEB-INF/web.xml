@@ -8,7 +8,7 @@
   <!-- Causes Facelets to refresh templates during development -->
   <context-param>
     <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
-    <param-value>-1</param-value>
+    <param-value>1</param-value>
   </context-param>
   <context-param>
     <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
@@ -29,13 +29,16 @@
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
   </context-param>
+  <context-param>
+    <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+    <param-value>/WEB-INF/rypox.taglib.xml</param-value>
+  </context-param>
+  
   <!-- theme -->
   <context-param>
     <param-name>primefaces.THEME</param-name>
     <param-value>nova-light</param-value>
-    <!--
-    <param-value>omega</param-value>
-   	-->
+    <!-- <param-value>omega</param-value> -->
   </context-param>
   <context-param>
     <param-name>primefaces.FONT_AWESOME</param-name>
@@ -43,6 +46,7 @@
   </context-param>
 
   <module-name>pureprimefaces</module-name>
+  
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Shop</web-resource-name>
@@ -52,13 +56,17 @@
       <role-name>webshop_user</role-name>
     </auth-constraint>
     <user-data-constraint>
-      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+      <transport-guarantee>NONE</transport-guarantee>
     </user-data-constraint>
   </security-constraint>
+  <login-config>
+    <auth-method>KEYCLOAK</auth-method>
+    <realm-name>rypox.int</realm-name>
+  </login-config>
   <security-role>
     <role-name>webshop_user</role-name>
   </security-role>
-    
+
   <servlet>
     <servlet-name>facesServlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
