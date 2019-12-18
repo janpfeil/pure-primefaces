@@ -7,14 +7,30 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Named
 @SessionScoped
 public class MessageBean implements Serializable {
+  private static final Logger LOG = LoggerFactory.getLogger(MessageBean.class);
 
   private String label;
   private String message;
+  private boolean toggle;
+
+  public boolean isToggle() {
+    LOG.debug("toggle:{}", this.toggle);
+    return this.toggle;
+  }
+
+  public void setToggle(final boolean toggle) {
+    LOG.debug("toggle:{}", this.toggle);
+    this.toggle = toggle;
+  }
 
   public String getMessage() {
+    LOG.debug("message:{}", this.message);
     return this.message;
   }
 

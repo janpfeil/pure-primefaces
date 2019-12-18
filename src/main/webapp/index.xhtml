@@ -1,49 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" lang="en">
 
 <h:head>
+ <title>hah</title>
 </h:head>
 <h:body>
-  <ui:debug hotkey="x" />
+ <ui:debug hotkey="x" />
 
-  <h2>JSF 2.2 basic ajax example</h2>
+ <h2>JSF 2.2 basic ajax example</h2>
 
-  <h:form>
-    <h:outputLabel value="Show a message using ajax: ">
-      <h:inputText id="message" value="#{messageBean.message}" />
-    </h:outputLabel>
+ <h:form>
+  <p:panelGrid columns="2">
+   <h:outputLabel for="message" value="Show a message using f:ajax: ">
+    <h:inputText id="message" value="#{messageBean.message}" />
+   </h:outputLabel>
 
-    <h:commandButton value="Show Message">
-      <f:ajax execute="message" render="output" />
-    </h:commandButton>
-  </h:form>
+   <h:commandButton value="Show Message">
+    <f:ajax execute="message" render="output" />
+   </h:commandButton>
+  </p:panelGrid>
 
+
+  <p:panelGrid columns="2">
+   <h:outputLabel value="Show a message using PRIMEFACES p:ajax">
+    <h:inputText id="message2" value="#{messageBean.message}" />
+   </h:outputLabel>
+
+   <p:commandButton value="Show Message" update="output2 target target2" />
+  </p:panelGrid>
+
+ </h:form>
+
+ <p>
+  <h:outputLabel value="Label:">
+   <h:outputText value="#{messageBean.label}" />
+  </h:outputLabel>
+ </p>
+ <p>
+  <h:outputText id="output" value="#{messageBean.message}" />
+ </p>
+ <p>
+  <h:outputText id="output2" value="#{messageBean.message}" />
+ </p>
+ <h:form>
   <p>
-    <h:outputLabel value="Label:">
-      <h:outputText value="#{messageBean.label}" />
-    </h:outputLabel>
+   <h:commandLink action="next" value="Next" />
   </p>
   <p>
-    <h:outputText id="output" value="#{messageBean.message}" />
+   <h:link value="Next (h:link)" outcome="next" />
   </p>
-  <h:form>
-    <p>
-      <h:commandLink action="next" value="Next" />
-    </p>
-    <p>
-      <h:link value="Next (h:link)" outcome="next" />
-    </p>
-  </h:form>
-  <ul>
-    <li><h:link value="AutoComplete with POJO" outcome="autocomplete" /></li>
+ </h:form>
+ <ul>
+  <li><h:link value="AutoComplete with POJO" outcome="autocomplete" /></li>
 
-    <li><h:link outcome="table/table">task list</h:link></li>
-    <li><h:link outcome="menu">Menu</h:link></li>
-    <li><h:link outcome="images">p:graphicImage component</h:link></li>
+  <li><h:link outcome="table/table">task list</h:link></li>
+  <li><h:link outcome="menu">Menu</h:link></li>
+  <li><h:link outcome="images">p:graphicImage component</h:link></li>
 
-  </ul>
+ </ul>
 
 
 </h:body>
