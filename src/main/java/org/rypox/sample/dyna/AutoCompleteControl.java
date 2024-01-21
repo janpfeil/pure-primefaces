@@ -3,11 +3,13 @@
  */
 package org.rypox.sample.dyna;
 
+import java.io.Serializable;
+
 /**
  * @author jan.pfeil
  *
  */
-public class AutoCompleteControl {
+public class AutoCompleteControl implements Serializable {
   private String name;
   private Object value;
   private boolean required;

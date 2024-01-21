@@ -5,11 +5,6 @@
   <artifactId>pure-primefaces</artifactId>
   <version>0.0.2-SNAPSHOT</version>
   <packaging>war</packaging>
-  <parent>
-    <groupId>org.rypox</groupId>
-    <artifactId>rypox-parent</artifactId>
-    <version>0.3.3</version>
-  </parent>
 
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
