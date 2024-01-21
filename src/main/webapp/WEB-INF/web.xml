@@ -2,42 +2,42 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
   <context-param>
-    <param-name>javax.faces.CONFIG_FILES</param-name>
+    <param-name>jakarta.faces.CONFIG_FILES</param-name>
     <param-value>/WEB-INF/faces-config.xml</param-value>
   </context-param>
   <!-- Causes Facelets to refresh templates during development -->
   <context-param>
-    <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+    <param-name>jakarta.faces.FACELETS_REFRESH_PERIOD</param-name>
     <param-value>1</param-value>
   </context-param>
   <context-param>
-    <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+    <param-name>jakarta.faces.jakarta.faces.FACELETS_SKIP_COMMENTS</param-name>
     <param-value>true</param-value>
   </context-param>
   <context-param>
-    <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+    <param-name>jakarta.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
     <param-value>true</param-value>
   </context-param>
-  <!-- Parameter ist definiert in jsf-api/javax.faces.application.ResourceHandler, obwohl die Javadoc sagt, dass der Wert nicht mit '/' 
+  <!-- Parameter ist definiert in jsf-api/javax.faces.application.ResourceHandler, obwohl die Javadoc sagt, dass der Wert nicht mit '/'
     beginnen darf, funktioniert es doch nur mit '/' -->
   <context-param>
-    <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>
+    <param-name>jakarta.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>
     <param-value>/WEB-INF/resources/</param-value>
   </context-param>
   <!-- Change to "Production" when you are ready to deploy -->
   <context-param>
-    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-name>jakarta.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
   </context-param>
   <context-param>
-    <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+    <param-name>jakarta.faces.FACELETS_LIBRARIES</param-name>
     <param-value>/WEB-INF/rypox.taglib.xml</param-value>
   </context-param>
   <context-param>
         <param-name>org.jboss.weld.development</param-name>
         <param-value>true</param-value>
   </context-param>
-  
+
   <!-- theme -->
   <context-param>
     <param-name>primefaces.THEME</param-name>
@@ -50,7 +50,7 @@
   </context-param>
 
   <module-name>pureprimefaces</module-name>
-  
+
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Shop</web-resource-name>
@@ -63,15 +63,15 @@
       <transport-guarantee>NONE</transport-guarantee>
     </user-data-constraint>
   </security-constraint>
-  <login-config>
-    <auth-method>KEYCLOAK</auth-method>
-    <realm-name>rypox.int</realm-name>
-  </login-config>
+<!--  <login-config>-->
+<!--    <auth-method>KEYCLOAK</auth-method>-->
+<!--    <realm-name>rypox.int</realm-name>-->
+<!--  </login-config>-->
   <security-role>
     <role-name>webshop_user</role-name>
   </security-role>
 
-<!-- 
+<!--
   <servlet>
     <servlet-name>facesServlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -86,7 +86,7 @@
     <welcome-file>/index.xhtml</welcome-file>
   </welcome-file-list>
   <error-page>
-    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    <exception-type>jakarta.faces.application.ViewExpiredException</exception-type>
     <location>/WEB-INF/errorpages/expired.xhtml</location>
   </error-page>
   <error-page>

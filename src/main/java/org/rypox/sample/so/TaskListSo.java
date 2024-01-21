@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.el.ExpressionFactory;
-import javax.el.MethodExpression;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.Application;
-import javax.faces.bean.ManagedBean;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
 
+import jakarta.annotation.ManagedBean;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.MethodExpression;
+import jakarta.faces.application.Application;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
 import org.primefaces.behavior.ajax.AjaxBehavior;
 import org.primefaces.behavior.ajax.AjaxBehaviorListenerImpl;
 import org.primefaces.component.api.UIColumn;
@@ -80,7 +80,7 @@ public class TaskListSo implements Serializable {
     columns.add(column);
     table.setColumns(columns);
 
-    final MethodExpression me = ef.createMethodExpression(fc.getELContext(), "#{taskListSo.onSelect}", String.class, new Class[0]);
+    final jakarta.el.MethodExpression me = ef.createMethodExpression(fc.getELContext(), "#{taskListSo.onSelect}", String.class, new Class[0]);
     final MethodExpression meArg = ef.createMethodExpression(fc.getELContext(), "#{taskListSo.onSelect}", String.class,
         new Class[] { SelectEvent.class });
     final AjaxBehavior ajaxBehavior = new AjaxBehavior();

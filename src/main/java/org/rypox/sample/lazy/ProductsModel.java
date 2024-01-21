@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
@@ -32,24 +33,14 @@ public class ProductsModel extends LazyDataModel<Product> {
     }
   }
 
-  /**
-   * 7.0.10
-   */
   @Override
-  public List<Product> load(final int first, final int pageSize, final List<SortMeta> multiSortMeta,
-      final Map<String, Object> filters) {
-    // TODO Auto-generated method stub
-    return super.load(first, pageSize, multiSortMeta, filters);
+  public int count(Map<String, FilterMeta> map) {
+    return 0;
   }
 
-  /**
-   * 7.0.10
-   */
   @Override
-  public List<Product> load(final int first, final int pageSize, final String sortField, final SortOrder sortOrder,
-      final Map<String, Object> filters) {
-    // TODO Auto-generated method stub
-    return super.load(first, pageSize, sortField, sortOrder, filters);
+  public List<Product> load(int i, int i1, Map<String, SortMeta> map, Map<String, FilterMeta> map1) {
+    return null;
   }
   /*
    * since 8.0 (non-Javadoc)

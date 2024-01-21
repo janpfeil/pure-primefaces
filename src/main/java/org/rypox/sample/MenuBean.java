@@ -12,45 +12,49 @@ import org.primefaces.model.menu.MenuModel;
 
 /**
  * @author jan.pfeil
- *
  */
 @Named
 @SessionScoped
 public class MenuBean implements Serializable {
-  private static final long serialVersionUID = 1L;
-  private MenuModel model;
+    private static final long serialVersionUID = 1L;
+    private MenuModel model;
 
-  public MenuBean() {
-    this.model = new DefaultMenuModel();
+    public MenuBean() {
+        this.model = new DefaultMenuModel();
 
-    // First submenu
-    final DefaultSubMenu firstSubmenu = new DefaultSubMenu("Dynamic Submenu");
-    DefaultMenuItem item = new DefaultMenuItem("External Link primefaces.org");
-    item.setUrl("http://www.primefaces.org");
-    item.setIcon("pi pi-home");
-    firstSubmenu.getElements().add(item);
-    this.model.getElements().add(firstSubmenu);
-    // Second submenu
-    final DefaultSubMenu secondSubmenu = new DefaultSubMenu("Dynamic Actions");
-    item = new DefaultMenuItem("Save");
-    item.setIcon("pi pi-save");
-    item.setCommand("#{menuBean.save}");
-    item.setUpdate("");
-    secondSubmenu.getElements().add(item);
-    item = new DefaultMenuItem("Delete");
-    item.setIcon("pi pi-trash");
-    item.setCommand("#{menuBean.delete}");
-    item.setAjax(false);
-    secondSubmenu.getElements().add(item);
-    item = new DefaultMenuItem("Redirect");
-    item.setIcon("pi pi-search");
-    item.setCommand("#{menuBean.redirect}");
-    secondSubmenu.getElements().add(item);
-    this.model.getElements().add(secondSubmenu);
-  }
+        // First submenu
+        final DefaultSubMenu.Builder submenuBuilder = DefaultSubMenu.builder();
+        DefaultSubMenu firstSubmenu = submenuBuilder.label("Dynamic Submenu").build();
+        DefaultMenuItem item = DefaultMenuItem.builder()
+                .value("External Link primefaces.org")
+                .build();
+        item.setUrl("http://www.primefaces.org");
+        item.setIcon("pi pi-home");
+        firstSubmenu.getElements().add(item);
+        this.model.getElements().add(firstSubmenu);
+        // Second submenu
+        final DefaultSubMenu secondSubmenu = DefaultSubMenu.builder()
+                .label("Dynamic Actions")
+                .build();
+        item = DefaultMenuItem.builder().value("Save").build();
+        item.setIcon("pi pi-save");
+        item.setCommand("#{menuBean.save}");
+        item.setUpdate("");
+        secondSubmenu.getElements().add(item);
+        item = DefaultMenuItem.builder().value("Delete").build();
+        item.setIcon("pi pi-trash");
+        item.setCommand("#{menuBean.delete}");
+        item.setAjax(false);
+        secondSubmenu.getElements().add(item);
+        item = DefaultMenuItem.builder().value("Redirect").build();
+        item.setIcon("pi pi-search");
+        item.setCommand("#{menuBean.redirect}");
+        secondSubmenu.getElements().add(item);
+        this.model.getElements().add(secondSubmenu);
+    }
 
-  public MenuModel getModel() {
-    return this.model;
-  }
+    public MenuModel getModel() {
+        return this.model;
+    }
 
 }
